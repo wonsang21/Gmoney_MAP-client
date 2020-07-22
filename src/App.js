@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import Header from './components/utils/Header';
+import Header from './components/header/Header';
 import SignIn from './pages/SignIn';
-import SignUp from './pages/SignUp';
 import MyPage from './pages/Mypage';
 import Map from './pages/Map';
 import StoreInfo from './components/store/StoreInfo';
@@ -25,27 +24,20 @@ const App = () => {
 
   // 렌더링하자마자 실행해야 할 것들을 넣는다. (ex.서버와 통신)
   useEffect(() => {
-    //
+    // 로그인유지를 위해 토큰을 서버에 보내서 해당유저의 정보를 받아온다.
   }, []);
 
   return (
     <div>
-      <Switch>
-        <Router>
+      <Router>
+        <Header isSignIn={isSignIn} signInHandler={signInHandler} />
+        <Switch>
+          <Route exact path="/" render={() => <Map />} />
           <Route
-            path="/"
-            render={() => (
-              <Header isSignIn={isSignIn} signInHandler={signInHandler} />
-            )}
-          />
-          <Route
-            exact
             path="/signin"
             render={() => <SignIn signInHandler={signInHandler} />}
           />
-          <Route exact path="/signup" render={() => <SignUp />} />
-          <Route exact path="/mypage" render={() => <MyPage />} />
-          <Route path="/" render={() => <Map />} />
+          <Route path="/mypage" render={() => <MyPage />} />
           <Route
             path="/storeinfo"
             render={() => (
@@ -56,8 +48,8 @@ const App = () => {
               />
             )}
           />
-        </Router>
-      </Switch>
+        </Switch>
+      </Router>
     </div>
   );
 };
