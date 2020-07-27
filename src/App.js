@@ -7,6 +7,14 @@ import MyPage from './pages/Mypage';
 import Map from './pages/Map';
 import StoreInfo from './components/store/StoreInfo';
 
+/*
+Header를 연결한다. (완성)
+localstoarge에 access token 있으면 로그인이 유지가 된다. (미완료)
+Map을 연결한다. (미완성)
+Mypage를 연결한다. (미완성)
+StoreInfo를 연결한다. (미완성)
+*/
+
 const App = () => {
   const [isSignIn, setIsSignIn] = useState(false);
   const [user, setUser] = useState({

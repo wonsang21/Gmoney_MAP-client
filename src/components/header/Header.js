@@ -12,6 +12,11 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import Button from '@material-ui/core/Button';
 
+/*
+로그인을 클릭하면 SignIn으로 이동한다. (완료)
+SignIn에서 로그인을 성공하면 버튼이 마이페이지, 로그아웃으로 변경된다. (완료)
+*/
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -41,6 +46,18 @@ const Header = (props) => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const logoutGoogle = () => {
+    if (window.gapi) {
+      const auth2 = window.gapi.auth2.getAuthInstance();
+      if (auth2 !== null) {
+        auth2.signOut().then(auth2.disconnect());
+        signInHandler();
+      }
+    }
+    handleClose();
+  };
+
   return (
     <div className={classes.root}>
       <AppBar position="static">
@@ -91,8 +108,8 @@ const Header = (props) => {
                 open={open}
                 onClose={handleClose}
               >
-                <MenuItem onClick={handleClose}>Mypage</MenuItem>
-                <MenuItem onClick={handleClose}>Logout</MenuItem>
+                <MenuItem onClick={handleClose}>마이페이지</MenuItem>
+                <MenuItem onClick={logoutGoogle}>로그아웃</MenuItem>
               </Menu>
             </div>
           ) : (

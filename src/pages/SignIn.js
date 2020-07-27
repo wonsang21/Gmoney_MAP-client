@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import { Link, withRouter } from 'react-router-dom';
-import axios from 'axios';
-import oc from 'open-color';
+import { withRouter } from 'react-router-dom';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
@@ -11,10 +9,12 @@ import Typography from '@material-ui/core/Typography';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Button from '@material-ui/core/Button';
 
+import GoogleSignIn from '../components/auth/GoogleSignIn';
+
 /*
 헤더의 로그인버튼을 클릭하면 바디에 구글로그인, 카카오로그인 버튼이 출력된다. (완료)
 박스안에 로그인 버튼 2개를 만든다. (완료)
-클릭시 각각 컴포넌트로 이동한다.(진행중)
+클릭시 각각 컴포넌트로 이동한다.(완료)
 */
 
 const useStyles = makeStyles((theme) => ({
@@ -35,6 +35,7 @@ const useStyles = makeStyles((theme) => ({
 
 const SignIn = (props) => {
   console.log('SignIn props', props);
+  const { signInHandler } = props;
   const classes = useStyles();
 
   return (
@@ -47,14 +48,7 @@ const SignIn = (props) => {
         <Typography component="h1" variant="h5">
           로그인
         </Typography>
-        <Button
-          className={classes.loginbtn}
-          fullWidth
-          variant="contained"
-          color="primary"
-        >
-          구글 로그인
-        </Button>
+        <GoogleSignIn signInHandler={signInHandler}></GoogleSignIn>
         <Button
           className={classes.loginbtn}
           fullWidth
