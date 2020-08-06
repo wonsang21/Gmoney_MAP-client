@@ -15,6 +15,7 @@ import Button from '@material-ui/core/Button';
 /*
 로그인을 클릭하면 SignIn으로 이동한다. (완료)
 SignIn에서 로그인을 성공하면 버튼이 마이페이지, 로그아웃으로 변경된다. (완료)
+Drawer메뉴 추가한다. (미완료)
 */
 
 const useStyles = makeStyles((theme) => ({

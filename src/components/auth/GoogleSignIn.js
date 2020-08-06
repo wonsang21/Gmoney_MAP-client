@@ -5,7 +5,6 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import { GoogleLogin } from 'react-google-login';
 import dotenv from 'dotenv';
-
 /*
 oauth 2.0을 통해서 구글로그인을 구현한다.
 구글로그인 버튼을 클릭시 google객체를 실행한다. (완료)
@@ -16,6 +15,7 @@ access token이 만료가 되면 refresh token을 발급받아야한다. (미완
 */
 
 dotenv.config();
+
 const useStyles = makeStyles((theme) => ({
   loginbtn: {
     margin: theme.spacing(3, 0, 0),
