@@ -12,6 +12,10 @@ import AddressDialog from '../components/map/AddressDialog';
 찾고싶은 키워드 text태그를 만든다. (완료)
 찾고싶은 키워드 text태그를 클릭시 키워드결과 컴포넌트를 출력한다. (완료)
 오른쪽에 가맹점 카테고리 분류태그를 만든다. (미완성)
+
+AddressDialog에서 받아온 위치정보를 state으로 끌어올린다. (완료)
+받은 위치정보를 Mapping으로 전달한다 (미완료)
+위치정보를 각 컴포넌트끼리 공유한다. (미완성)
 */
 
 const useStyles = makeStyles((theme) => ({
@@ -37,17 +41,24 @@ const useStyles = makeStyles((theme) => ({
 
 const Map = () => {
   const classes = useStyles();
+  const [location, setLocation] = useState(null);
+
+  const handleLocation = (place) => {
+    setLocation(place);
+  };
 
   useEffect(() => {
-    Mapping();
-  }, []);
+    console.log('선택한 위치정보입니다.', location);
+  }, [location]);
 
   return (
     <div>
-      <div id="mapContainer" className={classes.mapping}></div>
+      <div className={classes.mapping}>
+        <Mapping location={location}></Mapping>
+      </div>
       <div className={classes.searching}>
         <div className={classes.searchDialog}>
-          <AddressDialog></AddressDialog>
+          <AddressDialog handleLocation={handleLocation}></AddressDialog>
         </div>
       </div>
     </div>

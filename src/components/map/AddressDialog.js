@@ -73,8 +73,8 @@ const Transition = forwardRef(function Transition(props, ref) {
 
 const AddressDialog = (props) => {
   const classes = useStyles();
-  const ps = new kakao.maps.services.Places(); // 장소 검색 객체를 생성합니다
   const { handleLocation } = props;
+  const ps = new kakao.maps.services.Places(); // 장소 검색 객체를 생성합니다
 
   const [open, setOpen] = useState(false);
   const [places, setPlaces] = useState(null); // 검색결과 장소
