@@ -20,7 +20,7 @@ Drawer메뉴 추가한다. (미완료)
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1,
+    width: '100%',
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -35,9 +35,9 @@ const useStyles = makeStyles((theme) => ({
 
 const Header = (props) => {
   console.log('Header props', props);
+  const classes = useStyles();
   const { isSignIn, signInHandler } = props;
   const [anchorEl, setAnchorEl] = useState(null);
-  const classes = useStyles();
   const open = Boolean(anchorEl);
 
   const handleMenu = (event) => {

@@ -19,23 +19,44 @@ AddressDialog에서 받아온 위치정보를 state으로 끌어올린다. (완�
 */
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    width: '100%',
+    height: '100%',
+    position: 'relative',
+  },
   mapping: {
     width: '100%',
-    height: '91%',
+    height: '100%',
     position: 'absolute',
     zIndex: 1,
   },
   searching: {
-    width: '98%',
-    margin: '10px 10px 10px 10px',
+    width: '100%',
+    padding: '20px',
     position: 'absolute',
     zIndex: 2,
+    display: 'flex',
   },
   searchDialog: {
-    width: '40%',
+    width: '20%',
     marginRight: '10px',
     backgroundColor: 'white',
     borderRadius: '4px 4px 4px 4px',
+    flex: 1,
+  },
+  searchStore: {
+    width: '20%',
+    // marginRight: '10px',
+    backgroundColor: 'white',
+    borderRadius: '4px 4px 4px 4px',
+    flex: 1,
+  },
+  sortCategory: {
+    width: '20%',
+    marginRight: '10px',
+    backgroundColor: 'white',
+    borderRadius: '4px 4px 4px 4px',
+    flex: 1,
   },
 }));
 
@@ -52,12 +73,15 @@ const Map = () => {
   }, [location]);
 
   return (
-    <div>
+    <div className={classes.root}>
       <div className={classes.mapping}>
         <Mapping location={location}></Mapping>
       </div>
       <div className={classes.searching}>
         <div className={classes.searchDialog}>
+          <AddressDialog handleLocation={handleLocation}></AddressDialog>
+        </div>
+        <div className={classes.searchStore}>
           <AddressDialog handleLocation={handleLocation}></AddressDialog>
         </div>
       </div>

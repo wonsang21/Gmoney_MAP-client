@@ -6,7 +6,6 @@ import Container from '@material-ui/core/Container';
 import Avatar from '@material-ui/core/Avatar';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import Button from '@material-ui/core/Button';
 
 import GoogleSignIn from '../components/auth/GoogleSignIn';
@@ -18,8 +17,13 @@ import GoogleSignIn from '../components/auth/GoogleSignIn';
 */
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    width: '100%',
+    height: '100%',
+    paddingTop: theme.spacing(8),
+    backgroundColor: 'white',
+  },
   paper: {
-    marginTop: theme.spacing(8),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -39,26 +43,27 @@ const SignIn = (props) => {
   const classes = useStyles();
 
   return (
-    <Container component="main" maxWidth="xs">
-      <CssBaseline />
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          로그인
-        </Typography>
-        <GoogleSignIn signInHandler={signInHandler}></GoogleSignIn>
-        <Button
-          className={classes.loginbtn}
-          fullWidth
-          variant="contained"
-          color="primary"
-        >
-          카카오 로그인
-        </Button>
-      </div>
-    </Container>
+    <div className={classes.root}>
+      <Container component="main" maxWidth="xs">
+        <div className={classes.paper}>
+          <Avatar className={classes.avatar}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            로그인
+          </Typography>
+          <GoogleSignIn signInHandler={signInHandler}></GoogleSignIn>
+          <Button
+            className={classes.loginbtn}
+            fullWidth
+            variant="contained"
+            color="primary"
+          >
+            카카오 로그인
+          </Button>
+        </div>
+      </Container>
+    </div>
   );
 };
 
