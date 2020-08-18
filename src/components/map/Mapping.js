@@ -35,14 +35,25 @@ const Mapping = (props) => {
 
   // 첫 화면을 지도에 보여줍니다.
   const handleMapping = () => {
-    const options = {
-      center: new kakao.maps.LatLng(37.275095, 127.009444), // 경기도청 좌표
-      level: 4,
+    const script = document.createElement('script');
+    script.async = true;
+    script.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.REACT_APP_KAKAO_API}&autoload=false&libraries=services,clusterer,drawing`;
+    document.head.appendChild(script);
+
+    script.onload = () => {
+      kakao.maps.load(() => {
+        const options = {
+          center: new kakao.maps.LatLng(37.275095, 127.009444), // 경기도청 좌표
+          level: 4,
+        };
+        // 지도를 생성합니다
+        const map = new kakao.maps.Map(mapContainer.current, options);
+        console.log('handleMapping 실행', map);
+
+        // state에 저장합니다.
+        setKakaoMap(map);
+      });
     };
-    // 지도를 생성합니다
-    const map = new window.kakao.maps.Map(mapContainer.current, options);
-    // 지도 state에 저장합니다.
-    setKakaoMap(map);
   };
 
   // 기존마커들을 삭제합니다.
@@ -73,6 +84,7 @@ const Mapping = (props) => {
       removeMarker();
       // 새로운 마커들을 찍어줍니다.
       displayMarker(kakaomap, position);
+      console.log('handleChangeMapping 실행');
     }
   };
 

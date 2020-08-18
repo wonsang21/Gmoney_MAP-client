@@ -18,6 +18,10 @@ import CloseIcon from '@material-ui/icons/Close';
 import Slide from '@material-ui/core/Slide';
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    width: '100%',
+    position: 'relative',
+  },
   appBar: {
     position: 'relative',
   },
@@ -26,21 +30,21 @@ const useStyles = makeStyles((theme) => ({
     flex: 1,
   },
   searchBar: {
-    width: '98%',
-    margin: '10px 10px 10px 10px',
+    width: '100%',
+    padding: '20px',
   },
   searchInput: {
-    width: '40%',
+    width: '50%',
     marginRight: '10px',
     borderRadius: '4px 4px 4px 4px',
     float: 'left',
   },
   searchBtn: {
     width: '10%',
-    height: '56px',
-    marginRight: '10px',
+    height: '60px',
     borderRadius: '4px 4px 4px 4px',
     float: 'left',
+    backgroundColor: 'yellow',
   },
   searchDivider: {
     backgroundColor: 'black',
@@ -74,7 +78,6 @@ const Transition = forwardRef(function Transition(props, ref) {
 const AddressDialog = (props) => {
   const classes = useStyles();
   const { handleLocation } = props;
-  const ps = new kakao.maps.services.Places(); // 장소 검색 객체를 생성합니다
 
   const [open, setOpen] = useState(false);
   const [places, setPlaces] = useState(null); // 검색결과 장소
@@ -171,9 +174,15 @@ const AddressDialog = (props) => {
   // 키워드 검색을 요청하는 함수입니다 (완료)
   const searchPlaces = () => {
     const keyword = document.getElementById('keyword').value;
+    let ps;
 
     if (!keyword.replace(/^\s+|\s+$/g, '')) {
       alert('키워드를 입력해주세요!');
+    }
+
+    if (kakao.maps.services.Status.OK) {
+      // 장소 검색 객체를 생성합니다
+      ps = new window.kakao.maps.services.Places();
     }
 
     // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
@@ -181,7 +190,7 @@ const AddressDialog = (props) => {
   };
 
   return (
-    <>
+    <div className={classes.root}>
       <TextField
         id="outlined-read-only-input"
         label="찾고 싶은 곳이 있나요?"
@@ -242,7 +251,7 @@ const AddressDialog = (props) => {
           <div id="pagination" className={classes.pagination}></div>
         </div>
       </Dialog>
-    </>
+    </div>
   );
 };
 
