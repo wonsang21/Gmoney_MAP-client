@@ -81,6 +81,7 @@ const AddressDialog = (props) => {
 
   const [open, setOpen] = useState(false);
   const [places, setPlaces] = useState(null); // 검색결과 장소
+  const [selectPlace, setSelectPlace] = useState(null); // 선택한 검색결과 장소
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -144,6 +145,7 @@ const AddressDialog = (props) => {
                   : place.address_name
               }
               onClick={() => {
+                setSelectPlace(place);
                 handleLocation(place);
                 handleClose();
                 props.history.push('/');
@@ -194,7 +196,10 @@ const AddressDialog = (props) => {
       <TextField
         id="outlined-read-only-input"
         label="찾고 싶은 곳이 있나요?"
-        defaultValue="용인시 수지구 동천동"
+        // defaultValue="검색어 없음"
+        value={
+          selectPlace ? selectPlace.place_name : '주소 또는 상호명을 검색하세요'
+        }
         InputProps={{
           readOnly: true,
         }}

@@ -38,25 +38,22 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
   },
   searchDialog: {
-    width: '20%',
+    marginRight: '10px',
+    backgroundColor: 'white',
+    borderRadius: '4px 4px 4px 4px',
+    flex: 3,
+  },
+  sortCategory: {
     marginRight: '10px',
     backgroundColor: 'white',
     borderRadius: '4px 4px 4px 4px',
     flex: 1,
   },
-  searchStore: {
-    width: '20%',
+  currentLocation: {
     // marginRight: '10px',
     backgroundColor: 'white',
     borderRadius: '4px 4px 4px 4px',
-    flex: 1,
-  },
-  sortCategory: {
-    width: '20%',
-    marginRight: '10px',
-    backgroundColor: 'white',
-    borderRadius: '4px 4px 4px 4px',
-    flex: 1,
+    flex: 3,
   },
 }));
 
@@ -81,7 +78,10 @@ const Map = () => {
         <div className={classes.searchDialog}>
           <AddressDialog handleLocation={handleLocation}></AddressDialog>
         </div>
-        <div className={classes.searchStore}>
+        <div className={classes.sortCategory}>
+          <AddressDialog handleLocation={handleLocation}></AddressDialog>
+        </div>
+        <div className={classes.currentLocation}>
           <AddressDialog handleLocation={handleLocation}></AddressDialog>
         </div>
       </div>

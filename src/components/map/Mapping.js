@@ -88,7 +88,7 @@ const Mapping = (props) => {
     }
   };
 
-  //
+  // 검색결과 마커를 기준으로 주변
 
   useEffect(() => {
     handleMapping();
